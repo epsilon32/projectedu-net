@@ -8,5 +8,6 @@ namespace projectedu.desktopui.ViewModels
 {
     public class ShellViewModel
     {
+
     }
 }

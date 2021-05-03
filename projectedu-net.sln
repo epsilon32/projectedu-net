@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "projectedu.api", "projectedu.api\projectedu.api.csproj", "{922AE3BD-19F1-47CC-BDD5-B5D0A45733DE}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "projectedu.db", "productedu.db\projectedu.db.sqlproj", "{10EFB256-797A-4DA9-8872-B0DC18DF68B7}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "projectedu.db", "projectedu.db\projectedu.db.sqlproj", "{10EFB256-797A-4DA9-8872-B0DC18DF68B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "projectedu.desktopui", "projectedu.desktopui\projectedu.desktopui.csproj", "{8F9A797F-AE41-4D82-AFBB-51C679E3AAD5}"
 EndProject
