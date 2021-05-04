@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using projectedu.api.Authentication;
+using Projectedu.API.Models;
+using Projectedu.API.Services;
+using Projectedu.API.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -10,55 +12,45 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projectedu.api.Controllers
+namespace Projectedu.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class AuthenticationController : Controller
     {
-        private readonly IConfiguration _configuration;
+        private IUserService _userService;
 
-        public AuthenticationController(IConfiguration configuration)
+        public AuthenticationController(IUserService userService)
         {
-            _configuration = configuration;
+            _userService = userService;
         }
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login([FromBody] LoginModel model)
+        public IActionResult Login(AuthenticateRequest model)
         {
-            // TODO actually checking the username/password (will do this once DB is setup)
-            // for now just generate JWT token
-            // TODO add user role depending on logged in user
-            var authClaims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, model.Username),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            };
-            // get JWT key
-            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+            var response = _userService.Authenticate(model);
 
-            var token = new JwtSecurityToken(
-                    issuer: _configuration["JWT:ValidIssuer"],
-                    audience: _configuration["JWT:ValidAudience"],
-                    expires: DateTime.Now.AddHours(3),
-                    claims: authClaims,
-                    signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-                    );
+            if (response == null)
+                return BadRequest(new { message = "Username or password is incorrect" });
 
-            return Ok(new
-            {
-                token = new JwtSecurityTokenHandler().WriteToken(token),
-                expiration = token.ValidTo
-            });
+            return Ok(response);
         }
 
-        [HttpPost]
-        [Route("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterModel model)
+        [Authorize]
+        [HttpGet]
+        public IActionResult GetAll()
         {
-            // TODO user registration
-            return Ok(new Response { Status = "Success", Message = "User created successfully!" });
+            var users = _userService.GetAll();
+            return Ok(users);
         }
+
+        //[HttpPost]
+        //[Route("register")]
+        //public async Task<IActionResult> Register([FromBody] RegisterModel model)
+        //{
+        //    // TODO user registration
+        //    return Ok(new Response { Status = "Success", Message = "User created successfully!" });
+        //}
     }
 }

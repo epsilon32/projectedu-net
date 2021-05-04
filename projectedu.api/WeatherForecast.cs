@@ -1,6 +1,6 @@
 using System;
 
-namespace projectedu.api
+namespace Projectedu.API
 {
     public class WeatherForecast
     {

@@ -1,13 +1,17 @@
 ﻿using Caliburn.Micro;
-using projectedu.desktopui.ViewModels;
+using Microsoft.Extensions.Configuration;
+using Projectedu.DesktopUI.Helpers;
+using Projectedu.DesktopUI.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
-namespace projectedu.desktopui
+namespace Projectedu.DesktopUI
 {
     public class Bootstrapper: BootstrapperBase
     {
@@ -17,6 +21,24 @@ namespace projectedu.desktopui
         public Bootstrapper()
         {
             Initialize();
+
+            ConventionManager.AddElementConvention<PasswordBox>(
+                PasswordBoxHelper.BoundPasswordProperty,
+                "Password",
+                "PasswordChanged");
+        }
+
+        private IConfiguration AddConfiguration()
+        {
+            IConfigurationBuilder builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+#if DEBUG
+            builder.AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true);
+#else
+            builder.AddJsonFile("appsettings.Production.json", optional: true, reloadOnChange: true);
+#endif
+            return builder.Build();
         }
 
         protected override void Configure()
@@ -26,7 +48,11 @@ namespace projectedu.desktopui
 
             // all the singletons
             _container.Singleton<IWindowManager, WindowManager>()
-                        .Singleton<IEventAggregator, EventAggregator>();
+                        .Singleton<IEventAggregator, EventAggregator>()
+                        .Singleton<IApiHelper, ApiHelper>();
+            
+            // setup appsettings.json
+            _container.RegisterInstance(typeof(IConfiguration), "IConfiguration", AddConfiguration());
 
             // all the view models
             GetType().Assembly.GetTypes()
