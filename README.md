@@ -12,7 +12,7 @@ Application for exam creation, exam taking, score reports (other features pendin
  - **Projectedu.API** : Web API
  - **Projectedu.API.Library** : Data Access Library for API
  - **Projectedu.DB** : Database Definition
- - **projectedu.Desktopui** : WPF Desktop Interface
+ - **Projectedu.Desktopui** : WPF Desktop Interface
 
 ### Libraries Used (add as needed)
  1. Caliburn Micro ([link](https://caliburnmicro.com/)). An easier way to implement MVVM in WPF

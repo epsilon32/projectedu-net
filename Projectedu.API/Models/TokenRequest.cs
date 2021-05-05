@@ -9,7 +9,7 @@ namespace Projectedu.API.Models
     /// <summary>
     /// Model for the Authenticate request (in short, the login request model)
     /// </summary>
-    public class AuthenticateRequest
+    public class TokenRequest
     {
         [Required(ErrorMessage = "User Name is required")]
         public string Username { get; set; }

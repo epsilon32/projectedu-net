@@ -21,6 +21,14 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectEdu.DesktopUI.Library\ProjectEdu.DesktopUI.Library.csproj" />
   </ItemGroup> 
 
 </Project>

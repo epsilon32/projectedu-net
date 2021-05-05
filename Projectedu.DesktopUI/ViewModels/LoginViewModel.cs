@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Projectedu.DesktopUI.Helpers;
+using Projectedu.DesktopUI.Library.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,8 +74,9 @@ namespace Projectedu.DesktopUI.ViewModels
         {
             try
             {
-                var result = await _apiHelper.Authenticate(Username, Password);
                 ErrorMessage = string.Empty;
+                var result = await _apiHelper.Authenticate(Username, Password);
+                await _apiHelper.GetLoggedInUserInfo(result.Token);
             }
             catch (Exception ex)
             {

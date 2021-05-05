@@ -19,20 +19,17 @@ namespace Projectedu.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthenticationController : Controller
+    public class TokenController : Controller
     {
-        private readonly AppSettings _appSettings;
         private IUserService _userService;
 
-        public AuthenticationController(IOptions<AppSettings> appSettings, IUserService userService)
+        public TokenController(IUserService userService)
         {
-            _appSettings = appSettings.Value;
             _userService = userService;
         }
 
         [HttpPost]
-        [Route("login")]
-        public IActionResult Login(AuthenticateRequest model)
+        public IActionResult GenerateToken(TokenRequest model)
         {
             var result = _userService.Authenticate(model);
 

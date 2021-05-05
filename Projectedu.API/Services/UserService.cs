@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Projectedu.API.Entities;
 using Projectedu.API.Models;
 using Projectedu.API.Helpers;
 using System;
@@ -17,7 +16,7 @@ namespace Projectedu.API.Services
 {
     public interface IUserService
     {
-        AuthenticateResponse Authenticate(AuthenticateRequest model);
+        TokenResponse Authenticate(TokenRequest model);
         UserModel GetById(int id);
     }
 
@@ -32,7 +31,7 @@ namespace Projectedu.API.Services
             _userData = userData;
         }
 
-        public AuthenticateResponse Authenticate(AuthenticateRequest model)
+        public TokenResponse Authenticate(TokenRequest model)
         {
             var user = _userData.GetUserByNamePass(model.Username, model.Password)?.FirstOrDefault();
 
@@ -42,7 +41,7 @@ namespace Projectedu.API.Services
             // authentication successful so generate jwt token
             var token = generateJwtToken(user);
 
-            return new AuthenticateResponse(user, token);
+            return new TokenResponse(user, token);
         }
 
         public UserModel GetById(int id)

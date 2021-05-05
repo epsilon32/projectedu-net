@@ -32,7 +32,7 @@ namespace Projectedu.API.Library.DataAccess
 
         public UserModel GetById(int id)
         {
-            return _dataAccess.LoadData<UserModel, dynamic>("dbo.spUserPassLookup", new { Id = id }).FirstOrDefault();
+            return _dataAccess.LoadData<UserModel, dynamic>("dbo.spUserLookup", new { Id = id }).FirstOrDefault();
         }
 
 

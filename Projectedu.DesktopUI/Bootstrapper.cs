@@ -1,7 +1,9 @@
 ﻿using Caliburn.Micro;
 using Microsoft.Extensions.Configuration;
 using Projectedu.DesktopUI.Helpers;
+using Projectedu.DesktopUI.Library.Helpers;
 using Projectedu.DesktopUI.ViewModels;
+using ProjectEdu.DesktopUI.Library.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -49,6 +51,7 @@ namespace Projectedu.DesktopUI
             // all the singletons
             _container.Singleton<IWindowManager, WindowManager>()
                         .Singleton<IEventAggregator, EventAggregator>()
+                        .Singleton<ILoggedInUserModel, LoggedInUserModel>()
                         .Singleton<IApiHelper, ApiHelper>();
             
             // setup appsettings.json
