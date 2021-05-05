@@ -10,8 +10,6 @@ namespace Projectedu.DesktopUI.ViewModels
 {
     public class LoginViewModel: Screen
     {
-        private string _username;
-        private string _password;
         private IApiHelper _apiHelper;
 
         public LoginViewModel(IApiHelper apiHelper)
@@ -19,6 +17,7 @@ namespace Projectedu.DesktopUI.ViewModels
             _apiHelper = apiHelper;
         }
 
+        private string _username;
         public string Username
         {
             get { return _username; }
@@ -30,6 +29,8 @@ namespace Projectedu.DesktopUI.ViewModels
             }
         }
 
+
+        private string _password;
         public string Password
         {
             get { return _password; }
@@ -38,6 +39,23 @@ namespace Projectedu.DesktopUI.ViewModels
                 _password = value;
                 NotifyOfPropertyChange(() => Password);
                 NotifyOfPropertyChange(() => CanLogin); //  refresh CanLogin on password change
+            }
+        }
+
+        public bool IsErrorVisible
+        {
+            get { return ErrorMessage?.Length > 0 ; }
+        }
+
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set 
+            { 
+                _errorMessage = value;
+                NotifyOfPropertyChange(() => IsErrorVisible);
+                NotifyOfPropertyChange(() => ErrorMessage);
             }
         }
 
@@ -56,10 +74,11 @@ namespace Projectedu.DesktopUI.ViewModels
             try
             {
                 var result = await _apiHelper.Authenticate(Username, Password);
+                ErrorMessage = string.Empty;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                ErrorMessage = ex.Message;
             }
         }
     }

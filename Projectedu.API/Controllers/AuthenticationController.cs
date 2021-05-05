@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Projectedu.API.Models;
-using Projectedu.API.Services;
 using Projectedu.API.Helpers;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,10 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Projectedu.API.Library.DataAccess;
+using Microsoft.Extensions.Options;
+using Projectedu.API.Library.Models;
+using Projectedu.API.Services;
 
 namespace Projectedu.API.Controllers
 {
@@ -18,10 +21,12 @@ namespace Projectedu.API.Controllers
     [ApiController]
     public class AuthenticationController : Controller
     {
+        private readonly AppSettings _appSettings;
         private IUserService _userService;
 
-        public AuthenticationController(IUserService userService)
+        public AuthenticationController(IOptions<AppSettings> appSettings, IUserService userService)
         {
+            _appSettings = appSettings.Value;
             _userService = userService;
         }
 
@@ -29,28 +34,12 @@ namespace Projectedu.API.Controllers
         [Route("login")]
         public IActionResult Login(AuthenticateRequest model)
         {
-            var response = _userService.Authenticate(model);
+            var result = _userService.Authenticate(model);
 
-            if (response == null)
+            if (result == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
-            return Ok(response);
+            return Ok(result);
         }
-
-        [Authorize]
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var users = _userService.GetAll();
-            return Ok(users);
-        }
-
-        //[HttpPost]
-        //[Route("register")]
-        //public async Task<IActionResult> Register([FromBody] RegisterModel model)
-        //{
-        //    // TODO user registration
-        //    return Ok(new Response { Status = "Success", Message = "User created successfully!" });
-        //}
     }
 }

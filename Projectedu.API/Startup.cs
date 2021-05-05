@@ -10,18 +10,23 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Projectedu.API.Services;
 using Projectedu.API.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
+using System.Reflection;
+using Projectedu.API.Library.DataAccess;
+using Projectedu.API.Library.Helpers;
+using Projectedu.API.Services;
 
 namespace Projectedu.API
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -38,7 +43,7 @@ namespace Projectedu.API
             // configure strongly typed settings object
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
-            // configure DI for application services
+            // configure DI for application services (the user data class is special, need it for authentication)
             services.AddScoped<IUserService, UserService>();
 
             services.AddSwaggerGen(c =>
@@ -68,6 +73,19 @@ namespace Projectedu.API
             {
                 endpoints.MapControllers();
             });
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            // do any autofac initialization here
+            var libraryAssembly = Assembly.Load("Projectedu.API.Library");
+
+            builder.RegisterAssemblyTypes(libraryAssembly)
+               .Where(a => !string.IsNullOrEmpty(a.Namespace) && a.Namespace.Contains("DataAccess"))
+               .AsImplementedInterfaces();
+
+            builder.RegisterInstance(new SqlDataAccess { ConnectionString = Configuration.GetConnectionString("DefaultConnection") })
+                .As<ISqlDataAccess>();
         }
     }
 }

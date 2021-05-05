@@ -1,4 +1,5 @@
 ﻿using Projectedu.API.Entities;
+using Projectedu.API.Library.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,12 @@ namespace Projectedu.API.Models
         public string Username { get; set; }
         public string Token { get; set; }
 
-        public AuthenticateResponse(User user, string token)
+        public AuthenticateResponse(UserModel user, string token)
         {
             Id = user.Id;
             FirstName = user.FirstName;
             LastName = user.LastName;
-            Username = user.Username;
+            Username = user.UserName;
             Token = token;
         }
     }
