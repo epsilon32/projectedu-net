@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProjectEdu.DesktopUI.Library\ProjectEdu.DesktopUI.Library.csproj" />
+    <ProjectReference Include="..\ProjectEdu.DesktopUI.Library\Projectedu.DesktopUI.Library.csproj" />
   </ItemGroup> 
 
 </Project>

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Projectedu.DesktopUI", "Pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projectedu.API.Library", "Projectedu.API.Library\Projectedu.API.Library.csproj", "{93A30190-5906-42FD-B554-C29A5689EECB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectEdu.DesktopUI.Library", "ProjectEdu.DesktopUI.Library\ProjectEdu.DesktopUI.Library.csproj", "{E666D458-0AEF-4775-8C83-96BE0BA74E69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projectedu.DesktopUI.Library", "ProjectEdu.DesktopUI.Library\Projectedu.DesktopUI.Library.csproj", "{E666D458-0AEF-4775-8C83-96BE0BA74E69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
