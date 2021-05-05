@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
 using Projectedu.DesktopUI.EventModels;
+using ProjectEdu.DesktopUI.Library.Models;
 
 namespace Projectedu.DesktopUI.ViewModels
 {
@@ -16,7 +17,6 @@ namespace Projectedu.DesktopUI.ViewModels
     /// </summary>
     public class ShellViewModel: Conductor<object>, IHandle<LogOnEvent>
     {
-        private DashboardViewModel _dashboardViewModel;
         private SimpleContainer _container;
         private IEventAggregator _events;
 
@@ -34,15 +34,37 @@ namespace Projectedu.DesktopUI.ViewModels
             }
         }
 
-        public ShellViewModel(DashboardViewModel dashboardViewModel,
-            SimpleContainer container, IEventAggregator events)
+        private bool _isLoggedIn = false; 
+        public bool IsLoggedIn 
+        { 
+            get
+            {
+                return _isLoggedIn;
+            }
+            set
+            {
+                _isLoggedIn = value;
+                NotifyOfPropertyChange(() => IsLoggedIn);
+            }
+        }
+        
+        public ShellViewModel(SimpleContainer container, IEventAggregator events)
         {
-            _dashboardViewModel = dashboardViewModel;
             _container = container;
             _events = events;
             _events.SubscribeOnPublishedThread(this);
             ActivateItemAsync(_container.GetInstance<LoginViewModel>());
             CurWindowState = WindowState.Normal;
+        }
+
+        public async Task DashboardScreen()
+        {
+            await ActivateItemAsync(_container.GetInstance<DashboardViewModel>());
+        }
+
+        public async Task NewExamScreen()
+        {
+            await ActivateItemAsync(_container.GetInstance<NewExamViewModel>());
         }
 
         /// <summary>
@@ -55,7 +77,8 @@ namespace Projectedu.DesktopUI.ViewModels
         public Task HandleAsync(LogOnEvent message, CancellationToken cancellationToken)
         {
             CurWindowState = WindowState.Maximized;
-            return ActivateItemAsync(_dashboardViewModel);
+            IsLoggedIn = true;
+            return ActivateItemAsync(_container.GetInstance<DashboardViewModel>());
         }
     }
 }

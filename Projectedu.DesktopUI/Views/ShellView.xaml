@@ -12,9 +12,15 @@
             <MenuItem Header="_Account">
                 <MenuItem x:Name="LoginScreen" Header="_Login"></MenuItem>
             </MenuItem>
+            <MenuItem Header="_Dashboard" Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                <MenuItem x:Name="DashboardScreen" Header="_Dashboard"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Exam" Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                <MenuItem x:Name="NewExamScreen" Header="_New Exam"></MenuItem>
+            </MenuItem>
         </Menu>
         <Grid>
-            <ContentControl x:Name="ActiveItem" Margin="5"></ContentControl>
+            <ContentControl x:Name="ActiveItem" Margin="20 5 20 20"></ContentControl>
         </Grid>
     </DockPanel>
 </Window>

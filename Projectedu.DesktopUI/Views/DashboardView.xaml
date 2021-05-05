@@ -8,15 +8,43 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
+            <!-- header row -->
             <RowDefinition Height="auto"></RowDefinition>
+            <!-- information row -->
+            <RowDefinition Height="*"></RowDefinition>
+            <!-- exam information row -->
+            <RowDefinition Height="*" ></RowDefinition>
+            <!-- space row -->
             <RowDefinition Height="*" ></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" FontSize="28" FontFamily="Segoe UI Light"
-                   Padding="10 10 0 0">
+                   Padding="0 10 0 0">
             Dashboard
         </TextBlock>
+        <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 10 0 0">
+            <TextBlock>My User Information</TextBlock>
+            <WrapPanel Margin="10 0 0 0">
+                <TextBlock Margin="0 0 10 0">First Name: </TextBlock>
+                <TextBlock Text="{Binding FirstName}"></TextBlock>
+            </WrapPanel>
+            <WrapPanel Margin="10 0 0 0">
+                <TextBlock Margin="0 0 10 0">Last Name:</TextBlock>
+                <TextBlock Text="{Binding LastName}"></TextBlock>
+            </WrapPanel>
+            <WrapPanel Margin="10 0 0 0">
+                <TextBlock>Other information...</TextBlock>
+            </WrapPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 10 0 0">
+            <TextBlock FontSize="18" FontFamily="Segoe UI Light">
+                Exam Information
+            </TextBlock>
+            <TextBlock>
+                TODO, add a table here?
+            </TextBlock>
+        </StackPanel>
     </Grid>
 </UserControl>
