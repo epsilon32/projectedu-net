@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Projectedu.DesktopUI.EventModels;
 using Projectedu.DesktopUI.Helpers;
 using Projectedu.DesktopUI.Library.Helpers;
 using System;
@@ -12,10 +13,12 @@ namespace Projectedu.DesktopUI.ViewModels
     public class LoginViewModel: Screen
     {
         private IApiHelper _apiHelper;
+        private IEventAggregator _events;
 
-        public LoginViewModel(IApiHelper apiHelper)
+        public LoginViewModel(IApiHelper apiHelper, IEventAggregator events)
         {
             _apiHelper = apiHelper;
+            _events = events;
         }
 
         private string _username;
@@ -77,6 +80,7 @@ namespace Projectedu.DesktopUI.ViewModels
                 ErrorMessage = string.Empty;
                 var result = await _apiHelper.Authenticate(Username, Password);
                 await _apiHelper.GetLoggedInUserInfo(result.Token);
+                await _events.PublishOnUIThreadAsync(new LogOnEvent());
             }
             catch (Exception ex)
             {
