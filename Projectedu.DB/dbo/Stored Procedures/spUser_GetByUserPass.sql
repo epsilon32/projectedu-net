@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[spUserPassLookup]
+﻿CREATE PROCEDURE [dbo].[spUser_GetByUserPass]
 	@UserName NVARCHAR(50),
 	@Password NVARCHAR(50) -- TODO, this should be a hash (right now its not used)
 AS

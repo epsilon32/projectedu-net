@@ -28,6 +28,11 @@ namespace Projectedu.DesktopUI.Library.Helpers
             InitializeClient();
         }
 
+        public HttpClient ApiClient
+        {
+            get { return _apiClient; }
+        }
+
         private void InitializeClient()
         {
             _apiClient = new HttpClient();

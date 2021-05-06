@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Microsoft.Extensions.Configuration;
 using Projectedu.DesktopUI.Helpers;
+using Projectedu.DesktopUI.Library.Api;
 using Projectedu.DesktopUI.Library.Helpers;
 using Projectedu.DesktopUI.ViewModels;
 using ProjectEdu.DesktopUI.Library.Models;
@@ -46,7 +47,8 @@ namespace Projectedu.DesktopUI
         protected override void Configure()
         {
             // setups dependency injection instances
-            _container.Instance(_container);
+            _container.Instance(_container)
+                .PerRequest<IExamEndPoint, ExamEndPoint>();
 
             // all the singletons
             _container.Singleton<IWindowManager, WindowManager>()

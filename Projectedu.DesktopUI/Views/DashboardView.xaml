@@ -42,9 +42,13 @@
             <TextBlock FontSize="18" FontFamily="Segoe UI Light">
                 Exam Information
             </TextBlock>
-            <TextBlock>
-                TODO, add a table here?
-            </TextBlock>
+            <ListBox x:Name="UserExams" MinWidth="400" MinHeight="300">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Description}"></TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+             </ListBox>
         </StackPanel>
     </Grid>
 </UserControl>

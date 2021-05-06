@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[spUserLookup]
+﻿CREATE PROCEDURE [dbo].[spUser_Lookup]
 	@id int
 AS
 BEGIN

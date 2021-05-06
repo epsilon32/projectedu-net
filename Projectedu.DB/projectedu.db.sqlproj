@@ -69,8 +69,9 @@
   <ItemGroup>
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\Exam.sql" />
-    <Build Include="dbo\Stored Procedures\spUserPassLookup.sql" />
-    <Build Include="dbo\Stored Procedures\spUserLookup.sql" />
+    <Build Include="dbo\Stored Procedures\spUser_GetByUserPass.sql" />
+    <Build Include="dbo\Stored Procedures\spUser_Lookup.sql" />
+    <Build Include="dbo\Stored Procedures\spExam_GetUserExams.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="projectedu.db.refactorlog" />

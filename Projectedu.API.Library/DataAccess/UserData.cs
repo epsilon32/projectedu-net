@@ -8,12 +8,6 @@ using System.Threading.Tasks;
 
 namespace Projectedu.API.Library.DataAccess
 {
-    public interface IUserData
-    {
-        List<UserModel> GetUserByNamePass(string userName, string password);
-        UserModel GetById(int id);
-    }
-
     public class UserData : IUserData
     {
 
@@ -27,12 +21,12 @@ namespace Projectedu.API.Library.DataAccess
         public List<UserModel> GetUserByNamePass(string userName, string password)
         {
             var parameters = new { userName = userName, password = password };
-            return _dataAccess.LoadData<UserModel, dynamic>("dbo.spUserPassLookup", parameters);
+            return _dataAccess.LoadData<UserModel, dynamic>("dbo.spUser_GetByUserPass", parameters);
         }
 
         public UserModel GetById(int id)
         {
-            return _dataAccess.LoadData<UserModel, dynamic>("dbo.spUserLookup", new { Id = id }).FirstOrDefault();
+            return _dataAccess.LoadData<UserModel, dynamic>("dbo.spUser_Lookup", new { Id = id }).FirstOrDefault();
         }
 
 

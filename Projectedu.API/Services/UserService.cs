@@ -20,6 +20,10 @@ namespace Projectedu.API.Services
         UserModel GetById(int id);
     }
 
+    /// <summary>
+    /// TODO, move this to another folder, not services.
+    /// All database operations should be done in the Library, not here
+    /// </summary>
     public class UserService : IUserService
     {
         private readonly AppSettings _appSettings;
