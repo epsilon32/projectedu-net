@@ -20,7 +20,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" FontSize="28" FontFamily="Segoe UI Light"
+        <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" FontSize="24" FontFamily="Segoe UI Light"
                    Padding="0 10 0 0">
             Dashboard
         </TextBlock>

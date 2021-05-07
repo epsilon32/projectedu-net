@@ -9,9 +9,13 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Projectedu.DB", "Projectedu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Projectedu.DesktopUI", "Projectedu.DesktopUI\Projectedu.DesktopUI.csproj", "{8F9A797F-AE41-4D82-AFBB-51C679E3AAD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projectedu.API.Library", "Projectedu.API.Library\Projectedu.API.Library.csproj", "{93A30190-5906-42FD-B554-C29A5689EECB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Projectedu.API.Library", "Projectedu.API.Library\Projectedu.API.Library.csproj", "{93A30190-5906-42FD-B554-C29A5689EECB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projectedu.DesktopUI.Library", "ProjectEdu.DesktopUI.Library\Projectedu.DesktopUI.Library.csproj", "{E666D458-0AEF-4775-8C83-96BE0BA74E69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Projectedu.DesktopUI.Library", "ProjectEdu.DesktopUI.Library\Projectedu.DesktopUI.Library.csproj", "{E666D458-0AEF-4775-8C83-96BE0BA74E69}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{2FFEC58F-1200-457E-9C37-B7F1D8A1EA99}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DesktopUI", "DesktopUI", "{1F09E5BB-E558-4604-9A7F-242585EC2AA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +48,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{922AE3BD-19F1-47CC-BDD5-B5D0A45733DE} = {2FFEC58F-1200-457E-9C37-B7F1D8A1EA99}
+		{10EFB256-797A-4DA9-8872-B0DC18DF68B7} = {2FFEC58F-1200-457E-9C37-B7F1D8A1EA99}
+		{8F9A797F-AE41-4D82-AFBB-51C679E3AAD5} = {1F09E5BB-E558-4604-9A7F-242585EC2AA0}
+		{93A30190-5906-42FD-B554-C29A5689EECB} = {2FFEC58F-1200-457E-9C37-B7F1D8A1EA99}
+		{E666D458-0AEF-4775-8C83-96BE0BA74E69} = {1F09E5BB-E558-4604-9A7F-242585EC2AA0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9E085D5D-DE51-4AA4-84B1-D5EBFE2238E5}
