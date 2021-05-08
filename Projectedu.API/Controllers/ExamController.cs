@@ -29,7 +29,11 @@ namespace Projectedu.API.Controllers
             return _examData.GetUserExams(userModel.Id);
         }
 
-
+        [HttpPost]
+        public void CreateExam(ExamModel exam)
+        {
+            _examData.CreateExam(exam);
+        }
 
     }
 }

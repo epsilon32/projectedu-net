@@ -1,4 +1,5 @@
-﻿using Projectedu.DesktopUI.Library.Helpers;
+﻿using Newtonsoft.Json;
+using Projectedu.DesktopUI.Library.Helpers;
 using Projectedu.DesktopUI.Library.Models;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,13 @@ namespace Projectedu.DesktopUI.Library.Api
                     throw new Exception(response.ReasonPhrase);
                 }
             }
+        }
+
+        public async Task CreateExam(ExamModel exam)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(exam),
+                Encoding.UTF8, "application/json");
+            await _apiHelper.ApiClient.PostAsync("Exam", content);
         }
     }
 }

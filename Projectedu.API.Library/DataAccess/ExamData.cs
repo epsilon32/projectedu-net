@@ -21,5 +21,11 @@ namespace Projectedu.API.Library.DataAccess
         {
             return _dataAccess.LoadData<ExamModel, dynamic>("dbo.spExam_GetUserExams", new { CreatedById = userId });
         }
+
+        public void CreateExam(ExamModel exam)
+        {
+            // add any other properties to be used by the store procedure
+            _dataAccess.SaveData("spExam_Create", new { CreatedBy = exam.CreatedBy, Name = exam.Name, Description = exam.Description });
+        }
     }
 }

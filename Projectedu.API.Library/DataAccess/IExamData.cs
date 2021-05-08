@@ -6,5 +6,6 @@ namespace Projectedu.API.Library.DataAccess
     public interface IExamData
     {
         List<ExamModel> GetUserExams(int userId);
+        void CreateExam(ExamModel exam);
     }
 }

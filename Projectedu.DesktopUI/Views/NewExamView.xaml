@@ -21,7 +21,7 @@
         </TextBlock>
         
         <!-- Exam information, function grid-->
-        <Grid Grid.Row="1" Grid.Column="0" Margin="5 5 5 5">
+        <Grid Grid.Row="1" Grid.Column="0" Margin="5 5 5 5" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
@@ -34,15 +34,15 @@
             <!-- Exam Name -->
             <DockPanel Grid.Row="0" Grid.Column="0" >
                 <TextBlock DockPanel.Dock="Top" Margin="5 5 5 5">Exam name</TextBlock>
-                <TextBox DockPanel.Dock="Bottom" Width="200" HorizontalAlignment="Left" Margin="5 0 0 0"></TextBox>
+                <TextBox Text="{Binding Path=NewExam.Name}" DockPanel.Dock="Bottom" Width="200" HorizontalAlignment="Left" Margin="5 0 0 0"></TextBox>
             </DockPanel>
             <!-- Exam Description -->
             <DockPanel Grid.Row="1" Grid.Column="0" >
                 <TextBlock DockPanel.Dock="Top" Margin="5 5 5 5">Description</TextBlock>
-                <TextBox DockPanel.Dock="Bottom" Width="350" MinLines="4" HorizontalAlignment="Left" Margin="5 0 0 0"></TextBox>
+                <TextBox x:Name="Description" Text="{Binding Path=NewExam.Description}" DockPanel.Dock="Bottom" Width="350" MinLines="4" HorizontalAlignment="Left" Margin="5 0 0 0"></TextBox>
             </DockPanel>
             <WrapPanel Grid.Row="2" Grid.Column="0" Margin="5 15 5 5">
-                <Button>Save</Button>
+                <Button x:Name="Save">Save</Button>
             </WrapPanel>
         </Grid>
 

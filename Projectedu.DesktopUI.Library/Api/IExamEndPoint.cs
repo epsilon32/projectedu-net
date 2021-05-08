@@ -7,5 +7,6 @@ namespace Projectedu.DesktopUI.Library.Api
     public interface IExamEndPoint
     {
         Task<List<ExamModel>> GetUserExams();
+        Task CreateExam(ExamModel exam);
     }
 }
